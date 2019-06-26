@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+   <th:block th:include="templates :: headers"></th:block>
+    <title>Dodawanie członka do bazy danych</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window "><!--glóny element bootstrapa-->
+    <form th:action="@{/admin/member/add/one}" th:object="${Member}" th:method="post">
+    <div class="row colored-row"> <!--wiersz-->
+        <div class="col-12"><!--12 kolumn szerokosc, max-->
+            <h2>Dodawanie członka do bazy danych</h2>
+        </div>
+    </div>
+
+    <div class="row colored-row">
+        <div class="col-6">
+            <label for="input-albumNumber">Numer karty (int):</label>
+        </div>
+        <div class="col-6">
+              <input class ="form-control" id="input-albumNumber" th:field="*{albumNumber}" name="albumNumber" required>
+        </div>
+    </div>
+
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-albumOut">Numer z listy ogólnej:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-albumOut" th:field="*{albumNumberOut}" name="albumNumberOut" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-firstName">Imię:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-firstName" th:field="*{firstName}" name="firstName" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-secondName">Drugie imię:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-secondName" th:field="*{secondName}" name="secondName" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-lastName">Nazwisko:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-lastName" th:field="*{lastName}" name="lastName" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-familyName">Nazwisko rodowe:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-familyName" th:field="*{familyName}" name="familyName" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-birthDate">Data urodzin:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-birthDate" th:field="*{birthDate}" name="birthDate" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-birthPlace">Miejsce narodzin:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-birthPlace" th:field="*{birthPlace}" name="birthPlace" required>
+            </div>
+        </div>
+
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-familyAddressDuringBirth">Adres zamieszkania rodziny:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-familyAddressDuringBirth" th:field="*{familyAddressDuringBirth}" name="familyAddressDuringBirth" required>
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-actualAddress">Aktualny adres:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-actualAddress" th:field="*{actualAddress}" name="actualAddress" required>
+            </div>
+        </div>
+
+        <div class="row colored-row">
+            <div class="offset-2 col-8"><!--odsun od lewej strony o dwie kolumny-->
+                <input class="form-control" type="submit" value="Dodaj">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<th:block th:include="templates :: footer_scripts"></th:block>
+</body>
+</html>

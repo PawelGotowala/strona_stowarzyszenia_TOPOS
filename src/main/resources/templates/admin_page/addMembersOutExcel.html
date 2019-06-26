@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+   <th:block th:include="templates :: headers"></th:block>
+    <title>Aktualizacja bazy danych członków</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window "><!--glóny element bootstrapa-->
+    <form th:action="@{/admin/member/add/excel/list}" th:method="post">
+    <div class="row colored-row"> <!--wiersz-->
+        <div class="col-12"><!--12 kolumn szerokosc, max-->
+            <h2>Aktualizacja list członków z Excela</h2>
+        </div>
+    </div>
+
+    <div class="row colored-row">
+        <div class="col-6">
+            <label for="input-sciezka">ściezka do pliku:</label>
+        </div>
+        <div class="col-6">
+              <input class ="form-control" id="input-sciezka" name="sciezka" required>
+        </div>
+    </div>
+        <div class="row colored-row">
+            <div class="offset-2 col-8"><!--odsun od lewej strony o dwie kolumny-->
+                <input class="form-control" type="submit" value="Wyślij nową listę członków do bazy danych">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+<th:block th:include="templates :: footer_scripts"></th:block>
+</body>
+</html>

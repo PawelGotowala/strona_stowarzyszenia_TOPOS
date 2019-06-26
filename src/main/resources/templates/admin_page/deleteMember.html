@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+   <th:block th:include="templates :: headers"></th:block>
+    <title>Usuwanie członka z bazy danych</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window "><!--glóny element bootstrapa-->
+    <form th:action="@{/admin/member/delete/one}"  th:method="post">
+    <div class="row colored-row">
+        <div class="col-12">
+            <h2>Usuwanie członka z bazy danych</h2>
+        </div>
+    </div>
+
+    <div class="row colored-row">
+        <div class="col-6">
+            <label for="input-albumNumber">Numer karty:</label>
+        </div>
+        <div class="col-6">
+              <input class ="form-control" id="input-albumNumber" name="albumNumber" required>
+        </div>
+    </div>
+
+        <div class="row colored-row">
+            <div class="offset-2 col-8">
+                <input class="form-control" type="submit" value="Usuń">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<th:block th:include="templates :: footer_scripts"></th:block>
+</body>
+</html>

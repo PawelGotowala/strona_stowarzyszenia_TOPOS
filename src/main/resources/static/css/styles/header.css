@@ -1,0 +1,78 @@
+/* styling header */
+header{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#menu{
+     position: absolute; right: 10px; 
+}
+
+#menu > li {
+    display: inline-block;
+    line-height: 60px;
+}
+
+#menu > li > a {
+    transition: all .5s;
+    position: relative;
+    font-weight: bold;
+    padding: 0 10px;
+    color: #fff;
+}
+
+#menu > li > a:hover {
+    transition: all .5s;
+    color: #FF9505;
+}
+
+#menu > li > a::after{
+    transition: all 0.5s;
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 0%;
+    left: 0;
+    bottom: -5px;
+    background-color: #FF9505;
+}
+
+#menu > li > a:hover::after{
+    transition: all .5s;
+    width: 100%;
+}
+
+.hamburger {
+    color: #fff;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    font-size: 25px;
+    display: none;
+    z-index: 100;
+}
+
+.mobile-menu {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(52, 89, 149, .95);
+    z-index: 100;
+}
+.mobile-menu > #menu {
+    text-align: center;
+}
+
+.mobile-menu > #menu > li {
+    display: block;
+}

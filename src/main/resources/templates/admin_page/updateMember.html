@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+   <th:block th:include="templates :: headers"></th:block>
+    <title>Aktualizacja członka</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window "><!--glóny element bootstrapa-->
+    <form th:action="@{/admin/member/update}" th:object="${memberUpdate}"  th:method="post">
+    <div class="row colored-row"> <!--wiersz-->
+        <div class="col-12"><!--12 kolumn szerokosc, max-->
+            <h2>Aktualizacja członka   ---------- wypełnić tylko pola do zmiany</h2>
+        </div>
+    </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-albumNumber">Numer karty członka do aktualizacji (int):</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-albumNumber"  name="albumNumber" required>
+            </div>
+        </div>
+
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-albumOut">Nowy numer z listy ogólnej:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-albumOut" th:field="*{albumNumberOut}" name="albumNumberOut">
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-firstName">Nowe imię:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-firstName" th:field="*{firstName}" name="firstName" >
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-secondName">Nowe drugie imię:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-secondName" th:field="*{secondName}" name="secondName" >
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-lastName">Nowe nazwisko:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-lastName" th:field="*{lastName}" name="lastName" >
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-familyName">Nowe nazwisko rodowe:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-familyName" th:field="*{familyName}" name="familyName" >
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-birthDate">Nowa data urodzin:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-birthDate" th:field="*{birthDate}" name="birthDate" >
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-birthPlace">Nowe miejsce narodzin:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-birthPlace" th:field="*{birthPlace}" name="birthPlace" >
+            </div>
+        </div>
+
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-familyAddressDuringBirth">Nowy adres zamieszkania rodziny:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-familyAddressDuringBirth" th:field="*{familyAddressDuringBirth}" name="familyAddressDuringBirth" >
+            </div>
+        </div>
+        <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-actualAddress">Nowy aktualny adres:</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-actualAddress" th:field="*{actualAddress}" name="actualAddress" >
+            </div>
+        </div>
+
+        <div class="row colored-row">
+            <div class="offset-2 col-8"><!--odsun od lewej strony o dwie kolumny-->
+                <input class="form-control" type="submit" value="Aktualizuj">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<th:block th:include="templates :: footer_scripts"></th:block>
+</body>
+</html>

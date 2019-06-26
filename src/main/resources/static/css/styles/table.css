@@ -1,0 +1,19 @@
+table  {color: #FFFFFF; }
+table thead {color: #FF9505;}
+table tbody tr:nth-of-type(even) { background-color: rgba(52, 89, 149, 1);
+    color: #FFF9; }
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 1%;
+}
+
+table td,th {
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    padding: 5px 12px;
+    text-align: left;
+    vertical-align: top;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Topos - Sopot</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <th:block th:include="templates :: headers_krzys"></th:block>
+
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar_krzys"></th:block>
+
+    <section id="home">
+        <div class="home-content">
+            <h1>Stowarzyszenie <br/>URODZONYCH<br/> w Sopocie TOPOS</h1>
+        </div>
+    </section>
+    
+
+    <section id="join">
+        <div class="join-content">
+            <h2>Urodziłeś się w Sopocie? Dołącz do nas!</h2>
+        </div>
+             <div class="join-content3">
+
+                <p>
+                    - &nbsp Ściągnij e-deklarację członkowską. Wypełnij odpowiednie pola i zapisz zmiany (ctr+s)  
+                    <a href="static/assets/E-deklaracja.pdf" target=blank download="static/assets/E-deklaracja.pdf"> <strong><i><u>Pobierz PDF</u></i></strong></a>
+                    <br><br>
+                    - &nbsp Wypełnioną deklarację wyślij na adres mailowy stowarzyszenia: urodzeniwsopocie@gmail.com
+                    <br><br>
+                    - &nbsp Zapłać składkę roczną w wysokości 25 zł., na rachunek bankowy: 
+                    <br><br>
+                    płacąc z rachunku krajowego: &nbsp &nbsp &nbsp &nbsp &nbsp <b>57 1240 1242 1111 0010 8406 0111</b>
+                    <br>
+                    płacąc z rachunku zagranicznego: &nbsp <b>PL57 1240 1242 1111 0010 8406 0111</b> &nbsp Kod SWIFT banku: <b>PKOPPLPW</b>.
+                    <br><br>
+                     <b>Pamiętaj, żeby w tytule przelewu podać kogo dotyczy wpłata!</b>
+                      <br>
+                     (Aby automatycznie przedłużyć członkowstwo należy wpłacić składkę do dnia 31 marca kolejnego roku)
+                     <br><br><br>
+                     Zapisz się i odbierz swoją kartę!
+                     <br>
+                  </p>
+             </div>
+
+        
+    </section>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <th:block th:include="templates :: script_krzys"></th:block>
+</body>
+</html>
