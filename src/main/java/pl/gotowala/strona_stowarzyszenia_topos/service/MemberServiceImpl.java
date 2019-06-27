@@ -63,7 +63,7 @@ public class MemberServiceImpl implements MemberService {
     }
 //
 
-
+//create
     @Transactional
     @Override
     public void addMembersListFromExcel(String sciezka)  {
@@ -77,11 +77,11 @@ public class MemberServiceImpl implements MemberService {
             appUserRepository.deleteAppUserByIdAfter(4L);
             memberRepository.deleteAll();
 
-            for (Member member : memberList) {
+            /*for (Member member : memberList) {
                String userName = String.valueOf(member.getAlbumNumber());
                String password = member.getFirstName();
                 userService.registerUser(userName,password,password);
-            }
+            }*/
             memberRepository.saveAll(memberList);
         }
     }
@@ -90,19 +90,19 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void addMember(Member member) {
         String userName = String.valueOf(member.getAlbumNumber());
-        String password = member.getFirstName();
+        String password = String.valueOf(member.getBirthDate().getYear());
         userService.registerUser(userName,password,password);
         memberRepository.save(member);
     }
-
+//delete
     @Transactional
     @Override
-    public void removeMemberByAlbumNumber(String albumNumber) {
+    public void removeMemberByAlbumNumber(int albumNumber) {
         memberRepository.deleteMemberByAlbumNumber(albumNumber);
     }
-
+//update
     @Override
-    public void update(String albumNumber, Member memberUpdate) {
+    public void update(int albumNumber, Member memberUpdate) {
         Optional<Member> optionalMember = memberRepository.findMemberByAlbumNumber(albumNumber);
         if(!optionalMember.isPresent()){
             throw new EntityNotFoundException("Nie ma takiego numeru albumu");
@@ -111,10 +111,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.get();
         if(!memberUpdate.getActualAddress().isEmpty()){
         member.setActualAddress(memberUpdate.getActualAddress());}
-       /* if(!memberUpdate.getAlbumNumber().isEmpty()){
-        member.setAlbumNumberOut(memberUpdate.getAlbumNumberOut());}
-       */
-       if(!memberUpdate.getBirthDate().isEmpty()){
+       if(memberUpdate.getBirthDate() != null){
         member.setBirthDate(memberUpdate.getBirthDate());}
         if(!memberUpdate.getBirthPlace().isEmpty()){
         member.setBirthPlace(memberUpdate.getBirthPlace());}

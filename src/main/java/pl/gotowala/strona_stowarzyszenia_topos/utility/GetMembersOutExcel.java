@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +44,13 @@ public class GetMembersOutExcel {
            double parseDouble = Double.parseDouble(member.get(0));
             int albumN = (int) parseDouble;
 
-            Member trueMember = new Member(albumN,member.get(1),member.get(2),member.get(3),member.get(4),member.get(5),member.get(6),member.get(7),member.get(8),member.get(9));
+            LocalDate birthDate;
+            if(member.get(6).equals("#")){
+             birthDate = LocalDate.parse("0001-01-01");
+            }else {
+                birthDate = LocalDate.parse(member.get(6), DateTimeFormatter.ofPattern("d-MMM-yyyy")); }
+
+            Member trueMember = new Member(albumN,member.get(1),member.get(2),member.get(3),member.get(4),member.get(5),birthDate,member.get(7),member.get(8),member.get(9));
              members.add(trueMember);
         }
         workbook.close();

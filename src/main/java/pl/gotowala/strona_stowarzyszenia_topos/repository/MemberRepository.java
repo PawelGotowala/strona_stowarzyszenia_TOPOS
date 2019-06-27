@@ -12,9 +12,9 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member , Long> {
 
 
-    void deleteMemberByAlbumNumber(String albumNumber);
+    void deleteMemberByAlbumNumber(int albumNumber);
 
-    Optional<Member> findMemberByAlbumNumber(String albumNumber);
+    Optional<Member> findMemberByAlbumNumber(int albumNumber);
 
     List<Member> findByLastNameLike(String lastName, Pageable pageable);
 

@@ -59,7 +59,7 @@ public class AdminController {
     }
 
     @PostMapping(path = "/member/delete/one")
-    public String deleteMember(@RequestParam(name ="albumNumber") String albumNumber){
+    public String deleteMember(@RequestParam(name ="albumNumber") int albumNumber){
         memberService.removeMemberByAlbumNumber(albumNumber);
         return  "redirect:/admin/member/delete/one";
     }
@@ -71,7 +71,7 @@ public class AdminController {
     }
 
     @PostMapping("/member/update")
-    public String update(@RequestParam(name = "albumNumber")String albumNumber,
+    public String update(@RequestParam(name = "albumNumber")int albumNumber,
                          Member memberUpdate){
         memberService.update(albumNumber, memberUpdate);
         return "redirect:/admin";

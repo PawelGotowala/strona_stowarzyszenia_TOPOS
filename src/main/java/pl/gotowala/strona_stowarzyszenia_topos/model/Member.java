@@ -3,8 +3,10 @@ package pl.gotowala.strona_stowarzyszenia_topos.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
@@ -24,14 +26,14 @@ public class Member {
     private String lastName;
     private String familyName;
 
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String birthDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
 
     private String birthPlace;
     private String familyAddressDuringBirth;
     private String actualAddress;
 
-    public Member(int albumNumber, String albumNumberOut, String firstName, String secondName, String lastName, String familyName, String birthDate, String birthPlace, String familyAddressDuringBirth, String actualAddress) {
+    public Member(int albumNumber, String albumNumberOut, String firstName, String secondName, String lastName, String familyName, LocalDate birthDate, String birthPlace, String familyAddressDuringBirth, String actualAddress) {
         this.albumNumber = albumNumber;
         this.albumNumberOut = albumNumberOut;
         this.firstName = firstName;

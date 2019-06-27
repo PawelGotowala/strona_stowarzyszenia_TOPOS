@@ -17,9 +17,9 @@ public interface MemberService {
 
     void addMember(Member member);
 
-    void removeMemberByAlbumNumber(String albumNumber);
+    void removeMemberByAlbumNumber(int albumNumber);
 
-    void update(String albumNumber, Member memberUpdate);
+    void update(int albumNumber, Member memberUpdate);
 
 
 }
