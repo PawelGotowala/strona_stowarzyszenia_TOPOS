@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,8 @@
     <title>Members</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <th:block th:include="templates :: headers_krzys"></th:block>
     <link href="/static/css/styles/table.css" rel="stylesheet" type="text/css"/>
 
@@ -27,16 +28,13 @@
         <h2>Członkowie</h2>
     </div>
 
-    <div class="list-size">
-         <div><p> Liczba wyników wyszukiwania: &nbsp</p></div>
-            <div  th:text="${memberList.size()}"></div>
-    </div>
-    <table border="3">
+
+    <form th:action="@{/members/list/search}" th:method="get">
+        <table border="3">
             <thead>
             <tr>
-                <th>Nr karty</th>
-                <th>Imie</th>
-                <th>Drugie imie</th>
+                <th>Imię</th>
+                <th>Drugie imię</th>
                 <th>Nazwisko</th>
                 <th>Nazwisko rodowe</th>
                 <th>Data narodzin</th>
@@ -44,22 +42,81 @@
                 <th>Miejsce zamieszkania rodziny podczas narodzin</th>
             </tr>
             </thead>
-            <tr th:each="member : ${memberList}">
-                <td th:text="${member.getAlbumNumber()}"> </td>
-                <td th:text="${member.getFirstName()}"></td>
-                <td th:text="${member.getSecondName()}"></td>
-                <td th:text="${member.getLastName()}"></td>
-                <td th:text="${member.getFamilyName()}"></td>
-                <td th:text="${member.getBirthDate()}"></td>
-                <td th:text="${member.getBirthPlace()}"></td>
-                <td th:text="${member.getFamilyAddressDuringBirth()}"></td>
+            <tr>
+                <td>
+                    <input type="text" name="searchName" >
+                </td>
+                <td><input type="text" name="searchSecondName"></td>
+                <td><input type="text" name="searchLastName"></td>
+                <td><input type="text" name="searchFamilyName"></td>
+                <td>
+                    <select name="searchBirthDate">
+                        <option name="searchBirthDate" value="opcja" >Pełny zakres</option>
+                        <option name="searchBirthDate" value="opcja1">... - 1945</option>
+                        <option name="searchBirthDate" value="opcja2">1946 - 1960</option>
+                        <option name="searchBirthDate" value="opcja3">1961 - ...</option>
+                    </select>
+                </td>
+                <td><input type="text" name="searchBirthPlace"></td>
+                <td><input type="text" name="searchFamilyAddress"></td>
+                <td><input type="submit" value="Szukaj"></td>
             </tr>
         </table>
+    </form>
+
+
+    <div class="list-size">
+        <div><p> Liczba wyników wyszukiwania: &nbsp</p></div>
+        <div th:text="${listSize}"></div>
+    </div>
+  <ul class="menu">
+        <li th:each="integer : ${pageNumberList}">
+            <a th:object="${searchParam}" th:href="@{'/members/list/search?pageNo='+ ${integer - 1} +
+                          '&searchName=' + ${searchParam.firstName} +
+                          '&searchSecondName='+ ${searchParam.secondName} +
+                          '&searchLastName='+ ${searchParam.lastName} +
+                          '&searchFamilyName='+ ${searchParam.familyName} +
+                          '&searchBirthDate='+ ${searchParam.birthDate} +
+                          '&searchBirthPlace='+ ${searchParam.birthPlace} +
+                          '&searchFamilyAddress='+ ${searchParam.familyAddress} +
+                          '#people'}" th:text="${integer}"> </a>
+        </li>
+    </ul>
+
+    <table border="3">
+        <thead>
+        <tr>
+            <th>Nr karty</th>
+            <th>Imię</th>
+            <th>Drugie imię</th>
+            <th>Nazwisko</th>
+            <th>Nazwisko rodowe</th>
+            <th>Data narodzin</th>
+            <th>Miejsce narodzin</th>
+            <th>Miejsce zamieszkania rodziny podczas narodzin</th>
+            <th>Aktualny adres</th>
+        </tr>
+        </thead>
+        <tr th:each="member : ${memberList}">
+            <td th:text="${member.getAlbumNumber()}"></td>
+            <td th:text="${member.getFirstName()}"></td>
+            <td th:text="${member.getSecondName()}"></td>
+            <td th:text="${member.getLastName()}"></td>
+            <td th:text="${member.getFamilyName()}"></td>
+            <td th:text="${member.getBirthDate()}"></td>
+            <td th:text="${member.getBirthPlace()}"></td>
+            <td th:text="${member.getFamilyAddressDuringBirth()}"></td>
+            <td th:text="${member.getActualAddress()}"></td>
+        </tr>
+    </table>
 
 </section>
 
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
 <th:block th:include="templates :: script_krzys"></th:block>
 </body>
 </html>

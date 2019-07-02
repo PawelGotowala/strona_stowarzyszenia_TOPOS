@@ -16,11 +16,15 @@ import pl.gotowala.strona_stowarzyszenia_topos.service.LoginService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private LoginService loginService;
-    @Autowired
     private PasswordEncoder passwordEncoder;
-//tutaj ten poczatek ogarnac , zlikwidowac brak zabezpieczenia, slack
+
+    @Autowired
+    public SecurityConfig(LoginService loginService, PasswordEncoder passwordEncoder) {
+        this.loginService = loginService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
          http

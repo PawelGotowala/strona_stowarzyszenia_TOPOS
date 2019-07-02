@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//"C:\\Users\\bonzo\\Desktop\\stowarzyszenie\\TOPOS--Lista-czonkw-Matka.xlsx"
 @Component
 public class GetMembersOutExcel {
     public List<Member> creatListOfMemberFromExcelFile(String sciezka) throws IOException {
@@ -46,7 +45,7 @@ public class GetMembersOutExcel {
 
             LocalDate birthDate;
             if(member.get(6).equals("#")){
-             birthDate = LocalDate.parse("0001-01-01");
+             birthDate = LocalDate.parse("1000-01-01");
             }else {
                 birthDate = LocalDate.parse(member.get(6), DateTimeFormatter.ofPattern("d-MMM-yyyy")); }
 

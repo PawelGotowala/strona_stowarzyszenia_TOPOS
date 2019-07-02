@@ -16,8 +16,12 @@ import java.util.Optional;
 @Service
 public class LoginService implements UserDetailsService {
 
-    @Autowired
     private AppUserRepository appUserRepository;
+
+    @Autowired
+    public LoginService(AppUserRepository appUserRepository) {
+        this.appUserRepository = appUserRepository;
+    }
 
     @Transactional
     @Override

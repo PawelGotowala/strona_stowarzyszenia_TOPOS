@@ -16,10 +16,15 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-  @Autowired
+
     private UserService userService;
-    @Autowired
     private MemberService memberService;
+
+    @Autowired
+    public AdminController(UserService userService, MemberService memberService) {
+        this.userService = userService;
+        this.memberService = memberService;
+    }
 
     @GetMapping("")
     private String adminStartWindow(){ return "admin_page/adminStartWindow";}

@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-//todo: zamienić autowiredy na konstruktory zamiast pól
-    @Autowired
+
     private UserService userService;
 
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/register")
     public String getRegisterForm(){

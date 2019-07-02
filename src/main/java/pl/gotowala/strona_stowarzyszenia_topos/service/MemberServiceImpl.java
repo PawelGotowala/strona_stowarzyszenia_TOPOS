@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.gotowala.strona_stowarzyszenia_topos.utility.MemberSpecification;
 
 import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
@@ -19,16 +20,19 @@ import java.util.Optional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-//todo: wyswietlanie listy nie uporzadkowane
-//todo: obslurzyc jakos ten wyjatek lepiej
-    @Autowired
+
     private MemberRepository memberRepository;
-    @Autowired
     private GetMembersOutExcel getMembersOutExcel;
-    @Autowired
     private AppUserRepository appUserRepository;
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public MemberServiceImpl(MemberRepository memberRepository, GetMembersOutExcel getMembersOutExcel, AppUserRepository appUserRepository, UserService userService) {
+        this.memberRepository = memberRepository;
+        this.getMembersOutExcel = getMembersOutExcel;
+        this.appUserRepository = appUserRepository;
+        this.userService = userService;
+    }
 
     @Override
     public List<Member> getAllMembers() {
@@ -46,14 +50,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Integer> getPageNumberList() {
+    public List<Integer> getPageNumberList(int listCount) {
         List<Integer> pageNumbersList = new ArrayList<>();
         int lastPageNo;
-        int totalMembersCount = (int) memberRepository.count();
+        //int totalMembersCount = (int) memberRepository.count();
 
-        if(totalMembersCount%PAGE_SIZE != 0){
-            lastPageNo = (totalMembersCount / PAGE_SIZE) +1;
-        }else lastPageNo = (totalMembersCount / PAGE_SIZE);
+        if(listCount%PAGE_SIZE != 0){
+            lastPageNo = (listCount / PAGE_SIZE) +1;
+        }else lastPageNo = (listCount / PAGE_SIZE);
 
         for(int i = 1; i <= lastPageNo ; i++ ){
             pageNumbersList.add(i);
@@ -61,9 +65,21 @@ public class MemberServiceImpl implements MemberService {
 
         return pageNumbersList;
     }
-//
 
-//create
+//
+    @Override
+    public int getListSize(){
+        return  (int) memberRepository.count();
+    }
+
+    @Override
+    public Page<Member> find(MemberSpecification memberSpecification, String pageNo) {
+        int goToPageNo = Integer.parseInt(pageNo);
+
+        return memberRepository.findAll(memberSpecification,PageRequest.of(goToPageNo,PAGE_SIZE));
+    }
+
+    //create
     @Transactional
     @Override
     public void addMembersListFromExcel(String sciezka)  {
@@ -77,11 +93,11 @@ public class MemberServiceImpl implements MemberService {
             appUserRepository.deleteAppUserByIdAfter(4L);
             memberRepository.deleteAll();
 
-            /*for (Member member : memberList) {
+            for (Member member : memberList) {
                String userName = String.valueOf(member.getAlbumNumber());
-               String password = member.getFirstName();
+               String password = String.valueOf(member.getBirthDate().getYear());
                 userService.registerUser(userName,password,password);
-            }*/
+            }
             memberRepository.saveAll(memberList);
         }
     }

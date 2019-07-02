@@ -17,14 +17,16 @@ import java.util.List;
 @Component
 public class DataInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
-    @Autowired
     private UserRoleRepository userRoleRepository;
-
-    @Autowired
     private AppUserRepository appUserRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    public DataInitializer(UserRoleRepository userRoleRepository, AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
+        this.userRoleRepository = userRoleRepository;
+        this.appUserRepository = appUserRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -32,7 +34,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 
         createRoleIfNotExist("ADMIN");
         createRoleIfNotExist("User");
-
+//TOdo: przed gitem haslo zmienic
         createUserWithRoleIfNotExist("admin","kniga","ADMIN","USER");
         createUserWithRoleIfNotExist("user","resu","USER");
     }

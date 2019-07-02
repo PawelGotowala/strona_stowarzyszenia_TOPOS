@@ -12,8 +12,12 @@ import java.util.Set;
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
 
-    @Autowired
     private UserRoleRepository userRoleRepository;
+
+    @Autowired
+    public UserRoleServiceImpl(UserRoleRepository userRoleRepository) {
+        this.userRoleRepository = userRoleRepository;
+    }
 
     //value laduje wartosci z ustawien(properties) do zmiennych
     @Value("${user.default.roles}")
