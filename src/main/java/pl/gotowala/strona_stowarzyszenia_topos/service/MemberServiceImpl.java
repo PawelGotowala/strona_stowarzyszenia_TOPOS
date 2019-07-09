@@ -1,9 +1,12 @@
 package pl.gotowala.strona_stowarzyszenia_topos.service;
 
 
+import pl.gotowala.strona_stowarzyszenia_topos.model.AppUser;
 import pl.gotowala.strona_stowarzyszenia_topos.model.Member;
+import pl.gotowala.strona_stowarzyszenia_topos.model.UserRole;
 import pl.gotowala.strona_stowarzyszenia_topos.repository.AppUserRepository;
 import pl.gotowala.strona_stowarzyszenia_topos.repository.MemberRepository;
+import pl.gotowala.strona_stowarzyszenia_topos.repository.UserRoleRepository;
 import pl.gotowala.strona_stowarzyszenia_topos.utility.GetMembersOutExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,13 +28,15 @@ public class MemberServiceImpl implements MemberService {
     private GetMembersOutExcel getMembersOutExcel;
     private AppUserRepository appUserRepository;
     private UserService userService;
+    private UserRoleRepository userRoleRepository;
 
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository, GetMembersOutExcel getMembersOutExcel, AppUserRepository appUserRepository, UserService userService) {
+    public MemberServiceImpl(MemberRepository memberRepository, GetMembersOutExcel getMembersOutExcel, AppUserRepository appUserRepository, UserService userService,UserRoleRepository userRoleRepository) {
         this.memberRepository = memberRepository;
         this.getMembersOutExcel = getMembersOutExcel;
         this.appUserRepository = appUserRepository;
         this.userService = userService;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
@@ -95,7 +100,7 @@ public class MemberServiceImpl implements MemberService {
 
             for (Member member : memberList) {
                String userName = String.valueOf(member.getAlbumNumber());
-               String password = String.valueOf(member.getBirthDate().getYear());
+               String password = String.valueOf(member.getBirthDate());
                 userService.registerUser(userName,password,password);
             }
             memberRepository.saveAll(memberList);
@@ -106,7 +111,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void addMember(Member member) {
         String userName = String.valueOf(member.getAlbumNumber());
-        String password = String.valueOf(member.getBirthDate().getYear());
+        String password = String.valueOf(member.getBirthDate());
         userService.registerUser(userName,password,password);
         memberRepository.save(member);
     }
@@ -114,9 +119,31 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     @Override
     public void removeMemberByAlbumNumber(int albumNumber) {
+        userService.deleteUser(albumNumber);
         memberRepository.deleteMemberByAlbumNumber(albumNumber);
     }
-//update
+
+    @Transactional
+    @Override
+    public void updateRole() {
+        List<Member> memberList = memberRepository.findAll();
+        for (Member member: memberList) {
+
+            if(member.getFee().equals("0")){
+               AppUser appUser = appUserRepository.getByEmail(String.valueOf(member.getAlbumNumber()));
+                appUser.getRoles().clear();
+                appUser.getRoles().add(userRoleRepository.findByName("BadUser"));
+                appUserRepository.save(appUser);
+            }else {
+                AppUser appUser = appUserRepository.getByEmail(String.valueOf(member.getAlbumNumber()));
+                appUser.getRoles().clear();
+                appUser.getRoles().add(userRoleRepository.findByName("User"));
+                appUserRepository.save(appUser);
+            }
+        }
+    }
+
+    //update
     @Override
     public void update(int albumNumber, Member memberUpdate) {
         Optional<Member> optionalMember = memberRepository.findMemberByAlbumNumber(albumNumber);
@@ -141,6 +168,9 @@ public class MemberServiceImpl implements MemberService {
         member.setSecondName(memberUpdate.getSecondName());}
         if(!memberUpdate.getLastName().isEmpty()){
         member.setLastName(memberUpdate.getLastName());}
+        if(!memberUpdate.getFee().isEmpty()){
+            member.setFee(memberUpdate.getFee());}
+
 
         memberRepository.save(member);
     }

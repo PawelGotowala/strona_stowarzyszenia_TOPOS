@@ -22,4 +22,7 @@ public class UserRole {
 
     private String name;
 
+    public UserRole(String name) {
+        this.name = name;
+    }
 }

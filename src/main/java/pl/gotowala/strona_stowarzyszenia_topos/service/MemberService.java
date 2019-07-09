@@ -25,4 +25,6 @@ public interface MemberService {
     int getListSize();
 
     Page<Member> find(MemberSpecification memberSpecification, String pageNo);
+
+    void updateRole();
 }

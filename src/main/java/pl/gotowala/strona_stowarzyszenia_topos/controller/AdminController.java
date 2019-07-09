@@ -82,4 +82,14 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/member/update/role")
+    public String updateRoleForm(){
+        return "admin_page/updateRole";
+    }
+    @PostMapping("/member/update/role")
+    public String updateRole(){
+        memberService.updateRole();
+        return "redirect:/admin";
+    }
+
 }

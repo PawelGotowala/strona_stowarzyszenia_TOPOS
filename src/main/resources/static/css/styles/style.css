@@ -164,11 +164,11 @@ a {
 /* styling project section  JOIN*/
 #join {
     min-height: 100%;
-    /* background-color: #BF7004; */
     background-color:  rgba(52, 89, 149, 0.932);
     display: flex;
     flex-direction: column;
     max-height: 40px;
+    justify-content: center;
 }
 .join-content {
     height: 100%;
@@ -177,7 +177,28 @@ a {
     padding: 20px;
     padding-top: 30px;
     color: #fff;
+    justify-content: center;
+}
+.join-content >h2{
+    position: relative;
+    z-index: 0;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 40px;
 
+}
+.join-content > h2::after{
+    position: absolute;
+    z-index: -1;
+    content: "";
+    height: 50px;
+    width: 12px;
+    left: -5px;
+    top: 20px;
+    background-color: #FF9505;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .join-content3{
@@ -189,28 +210,8 @@ a {
     color: #fff;
     text-align: left;
     font-size: 18px;
+    justify-content: center;
 }
-.join-content > h2{
-    color: #fff;
-    position: relative;
-    z-index: 0;
-    display: block;
-    margin: 0 auto;
-    padding: 20px 0;
-    font-size: 40px;
-}
-
-.join-content > h2::after{
-    position: absolute;
-    z-index: -1;
-    content: "";
-    height: 50px;
-    width: 12px;
-    left: -5px;
-    top: 20px;
-    background-color: #FF9505;
-}
-
 .list-size{
     height: 100%;
     display: flex;

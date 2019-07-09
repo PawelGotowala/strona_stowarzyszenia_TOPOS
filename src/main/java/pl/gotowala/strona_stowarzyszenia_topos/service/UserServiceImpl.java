@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
          throw new PasswordDoNotMatchException("Password and Password Confirm do not match.");
      }
      if(password.length() <= 2){
-         throw new PasswordDoNotMatchException("Password must be at least 3 character.");
+         throw new PasswordDoNotMatchException("Password must be at least 2 character.");
      }
      AppUser appUser=new AppUser();
      appUser.setEmail(username);
@@ -49,5 +49,11 @@ public class UserServiceImpl implements UserService {
         return appUserRepository.findAll();
     }
 
+    @Override
+    public void deleteUser(int albumNumber) {
+        appUserRepository.deleteAppUserByEmail(String.valueOf(albumNumber));
+    }
 
 }
+
+

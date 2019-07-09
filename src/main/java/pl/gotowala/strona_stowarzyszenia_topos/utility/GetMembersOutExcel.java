@@ -49,7 +49,7 @@ public class GetMembersOutExcel {
             }else {
                 birthDate = LocalDate.parse(member.get(6), DateTimeFormatter.ofPattern("d-MMM-yyyy")); }
 
-            Member trueMember = new Member(albumN,member.get(1),member.get(2),member.get(3),member.get(4),member.get(5),birthDate,member.get(7),member.get(8),member.get(9));
+            Member trueMember = new Member(albumN,member.get(1),member.get(2),member.get(3),member.get(4),member.get(5),birthDate,member.get(7),member.get(8),member.get(9),member.get(10));
              members.add(trueMember);
         }
         workbook.close();

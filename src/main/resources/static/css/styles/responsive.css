@@ -15,6 +15,23 @@
         width: 60%;
     }
 
+    #join{
+        height: auto;
+    }
+
+    .join-content{
+        width: 100%;
+        float: none;
+        height: auto;
+        font-size: 12px;
+    }
+    .join-content3{
+        width: 100%;
+        float: none;
+        height: auto;
+        font-size: 12px;
+    }
+
     #about{
         height: auto;
     }

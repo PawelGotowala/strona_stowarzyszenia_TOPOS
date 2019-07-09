@@ -28,7 +28,13 @@
         <h2>Członkowie</h2>
     </div>
 
-    <a>Możliwość wyszukiwania z dodatkowymi informacjami dla zalogowanych członków</a>
+    <a sec:authorize="!isAuthenticated()" > Możliwość wyszukiwania z dodatkowymi informacjami dla zalogowanych członków</a>
+    <a sec:authorize="hasRole('BadUser')" > Jesteś zalogowany, jednak aby zobaczyć więcej opłać zaległą składkę :)</a>
+    <ul class="menu">
+        <li><a sec:authorize="hasRole('BadUser')" th:href="@{'/join#join'}"> Numer konta znajdziesz tutaj </a></li>
+    </ul>
+
+
     <ul class="menu">
         <li><a sec:authorize="!isAuthenticated()" th:href="@{/members/list/search}"> <b>Zaloguj</b> </a></li>
     </ul>

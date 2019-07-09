@@ -32,8 +32,9 @@ public class Member {
     private String birthPlace;
     private String familyAddressDuringBirth;
     private String actualAddress;
+    private String fee;
 
-    public Member(int albumNumber, String albumNumberOut, String firstName, String secondName, String lastName, String familyName, LocalDate birthDate, String birthPlace, String familyAddressDuringBirth, String actualAddress) {
+    public Member(int albumNumber, String albumNumberOut, String firstName, String secondName, String lastName, String familyName, LocalDate birthDate, String birthPlace, String familyAddressDuringBirth, String actualAddress,String fee) {
         this.albumNumber = albumNumber;
         this.albumNumberOut = albumNumberOut;
         this.firstName = firstName;
@@ -44,5 +45,6 @@ public class Member {
         this.birthPlace = birthPlace;
         this.familyAddressDuringBirth = familyAddressDuringBirth;
         this.actualAddress = actualAddress;
+        this.fee = fee;
     }
 }

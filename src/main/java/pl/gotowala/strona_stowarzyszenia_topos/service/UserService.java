@@ -10,4 +10,6 @@ public interface UserService {
     void registerUser(String username, String password, String passwordConfirm);
 
     List<AppUser> getAllUsers();
+
+    void deleteUser(int albumNumber);
 }

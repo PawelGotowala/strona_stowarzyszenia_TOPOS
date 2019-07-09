@@ -99,6 +99,16 @@
         </div>
 
         <div class="row colored-row">
+            <div class="col-6">
+                <label for="input-fee">Czy zapłacone (0 nie / 1 tak):</label>
+            </div>
+            <div class="col-6">
+                <input class ="form-control" id="input-fee" th:field="*{fee}" name="fee" required>
+            </div>
+        </div>
+
+
+        <div class="row colored-row">
             <div class="offset-2 col-8"><!--odsun od lewej strony o dwie kolumny-->
                 <input class="form-control" type="submit" value="Dodaj">
             </div>

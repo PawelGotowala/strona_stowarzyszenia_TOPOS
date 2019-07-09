@@ -17,5 +17,4 @@ public interface MemberRepository extends JpaRepository<Member , Long>, JpaSpeci
 
     Optional<Member> findMemberByAlbumNumber(int albumNumber);
 
-
 }
