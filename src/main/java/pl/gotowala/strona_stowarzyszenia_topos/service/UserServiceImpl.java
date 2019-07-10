@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(String username, String password, String passwordConfirm) {
      if(!password.equals(passwordConfirm)){
-         //hasłą sie nie zgadzają
          throw new PasswordDoNotMatchException("Password and Password Confirm do not match.");
      }
      if(password.length() <= 2){
@@ -34,13 +33,11 @@ public class UserServiceImpl implements UserService {
      }
      AppUser appUser=new AppUser();
      appUser.setEmail(username);
-     //szyfruje haslo encode
      appUser.setPassword(passwordEncoder.encode(password));
 
-     //nadanie uprawnien/ ppbranie domyślnych uprawnień z userRoleService (Który łąduje z konfiguracji)
+     //nadanie uprawnien/ pobranie domyślnych uprawnień z userRoleService (Który łąduje z konfiguracji)
         appUser.setRoles(userRoleService.getDefaultUserRoles());
 
-        //zapis do bazy
         appUserRepository.save(appUser);
     }
 

@@ -3,8 +3,10 @@ package pl.gotowala.strona_stowarzyszenia_topos.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -23,5 +25,7 @@ public class AppUser {
     @ManyToMany
     private Set<UserRole> roles;
 
-
+    @OneToMany
+    @Nullable
+    private List<Memory> memories;
 }

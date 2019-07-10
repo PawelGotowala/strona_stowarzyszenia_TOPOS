@@ -36,8 +36,8 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
         createRoleIfNotExist("User");
         createRoleIfNotExist("BadUser");
 
-        createUserWithRoleIfNotExist("admin","**","ADMIN","USER");
-        createUserWithRoleIfNotExist("user","**","USER");
+        createUserWithRoleIfNotExist("admin","urodzeniwsopocietomy","ADMIN","USER");
+        createUserWithRoleIfNotExist("user","bonzo411","USER");
     }
 
     private void createUserWithRoleIfNotExist(String username,String password, String... roles){

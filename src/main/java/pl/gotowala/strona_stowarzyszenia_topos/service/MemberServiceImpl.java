@@ -58,7 +58,6 @@ public class MemberServiceImpl implements MemberService {
     public List<Integer> getPageNumberList(int listCount) {
         List<Integer> pageNumbersList = new ArrayList<>();
         int lastPageNo;
-        //int totalMembersCount = (int) memberRepository.count();
 
         if(listCount%PAGE_SIZE != 0){
             lastPageNo = (listCount / PAGE_SIZE) +1;
