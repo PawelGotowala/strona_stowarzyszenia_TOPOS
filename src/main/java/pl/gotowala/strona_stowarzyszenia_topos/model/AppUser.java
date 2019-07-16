@@ -26,6 +26,5 @@ public class AppUser {
     private Set<UserRole> roles;
 
     @OneToMany
-    @Nullable
     private List<Memory> memories;
 }

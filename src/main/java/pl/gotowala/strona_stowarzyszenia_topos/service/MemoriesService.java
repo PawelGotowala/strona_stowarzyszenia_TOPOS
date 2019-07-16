@@ -14,4 +14,6 @@ public interface MemoriesService {
     List<Integer> getPageNumberList(int listCount);
 
     int getListSize();
+
+    void saveAndAddMemoriesToLoggedUser(Memory memory);
 }

@@ -17,6 +17,9 @@ public class Memory {
     private Long id;
 
     @Lob
-    private String memory;
+    private String oneMemory;
 
+    public Memory(String oneMemory) {
+        this.oneMemory = oneMemory;
+    }
 }

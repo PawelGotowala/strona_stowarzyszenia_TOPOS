@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -20,6 +20,16 @@
     <div class="people-content">
         <h2>Wspomnienia</h2>
     </div>
+    <a sec:authorize="!isAuthenticated()" > Możliwość dodawania wspomnień dla zalogowanych członków</a>
+    <ul class="menu">
+        <li><a sec:authorize="hasRole('User')" th:href="@{/memories/add}"> <b>Dodaj wspomnienie</b> </a></li>
+    </ul>
+    <a sec:authorize="hasRole('BadUser')" > Jesteś zalogowany, jednak aby dodać wspomnienie opłać zaległą składkę :)</a>
+    <ul class="menu">
+        <li><a sec:authorize="!isAuthenticated()" th:href="@{/memories/add}"> <b>Zaloguj</b> </a></li>
+    </ul>
+
+
 
     <ul class="menu">
         <li th:each="integer : ${pageNumberList}">
@@ -27,10 +37,8 @@
         </li>
     </ul>
 
-    <div>
-        <P>
-
-        </P>
+    <div class="memories" th:each="memory : ${membersMemories}">
+        <p th:text="${memory.getOneMemory()}"> <br><br><br> </p>
     </div>
 
 
