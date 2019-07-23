@@ -19,7 +19,10 @@ public class Memory {
     @Lob
     private String oneMemory;
 
-    public Memory(String oneMemory) {
+    private String signature;
+
+    public Memory(String oneMemory,String signature) {
         this.oneMemory = oneMemory;
+        this.signature = signature;
     }
 }

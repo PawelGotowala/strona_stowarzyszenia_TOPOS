@@ -38,7 +38,8 @@
     </ul>
 
     <div class="memories" th:each="memory : ${membersMemories}">
-        <p th:text="${memory.getOneMemory()}"> <br><br><br> </p>
+        <p th:text="${memory.getOneMemory()}"> </p>
+        <p align="right"  th:text="${memory.getSignature()}"> <br><br><br> </p>
     </div>
 
 

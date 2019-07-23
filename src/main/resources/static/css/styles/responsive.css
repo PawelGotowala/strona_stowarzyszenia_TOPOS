@@ -20,16 +20,16 @@
     }
 
     .join-content{
-        width: 100%;
-        float: none;
+
         height: auto;
         font-size: 12px;
     }
     .join-content3{
-        width: 100%;
         float: none;
         height: auto;
         font-size: 12px;
+        padding-left: 20vw;
+        padding-right: 20px;
     }
 
     #about{
@@ -61,6 +61,21 @@
 
 
 @media only screen and (orientation: portrait) {
+
+    .people-content > .people-list {
+        column-count: 1;
+    }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 960px) {
+    .people-content > .people-list {
+        column-count: 3;
+    }
+}
+
+/* responsive for header*/
+
+@media only screen and (max-width: 830px) {
     header {
         background-color: rgba(52, 89, 149, .7);
     }
@@ -68,22 +83,61 @@
         display: none;
     }
 
+    #menu {
+        position: static;
+    }
+
     .hamburger {
         display: block;
     }
-    .people-content > .people-list {
-        column-count: 1;
-    }
+}
 
-    #contact {
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
+@media only screen and (max-width: 830px) and (orientation: landscape) {
+    #menu > li {
+        line-height: 45px;
     }
 }
 
-@media only screen and (orientation: landscape) and (max-width: 960px) {
-    .people-content > .people-list {
-        column-count: 3;
+/*responsive for home*/
+
+@media only screen and (max-width: 540px) {
+    .home-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .home-content > h1 {
+        font-size: 25px;
+    }
+}
+
+/*responsive for contact*/
+
+@media only screen and (max-width: 540px) {
+    .contact-wrapper {
+        padding: 50px 22px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #contact {
+        justify-content: space-around;
+    }
+
+    .footer-form {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    #contact {
+        flex-direction: column;
+    }
+}
+
+/*responsive for members*/
+@media only screen and (max-width: 830px) {
+    .people-content{
+        padding-top: 70px;
     }
 }

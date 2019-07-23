@@ -1,0 +1,71 @@
+#about{
+    height: 100%;
+}
+
+.about-content{
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    float: left;
+    text-align: center;
+    background-color:  #345995e8;
+    color: #fff;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 30px 10px;
+}
+
+.about-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.about-content::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.about-content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #fff;
+}
+
+.about-content > h2{
+    position: relative;
+    z-index: 0;
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 40px;
+}
+
+.about-content > h2::after{
+    position: absolute;
+    z-index: -1;
+    content: "";
+    height: 50px;
+    width: 12px;
+    left: -5px;
+    top: 20px;
+    background-color: #FF9505;
+}
+
+.about-content > p{
+    padding: 10px 10px;
+}
+
+.about-photo{
+    height: 100%;
+    width: 50%;
+    float: right;
+    background-color: #fff;
+    background-image: url("/static/assets/meeting/Clipboard001.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all .5s;
+}
