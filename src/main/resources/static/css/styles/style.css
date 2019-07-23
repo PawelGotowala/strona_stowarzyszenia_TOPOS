@@ -28,8 +28,32 @@ a {
     color: #fff;
     text-align: center;
     font-size: 16px;
+    word-break: break-word;
 }
-
+/* styling project section  JOIN*/
+#gallery{
+    min-height: 100%;
+    background-color:  rgba(52, 89, 149, 0.932);
+    display: flex;
+    flex-direction: column;
+    max-height: 40px;
+    justify-content: center;
+    text-align: center;
+}
+.gallery-photo{
+    height: 70vw;
+    display: flex;
+    flex-direction: row;
+    padding: 60px 20px 20px 20px;
+    color: #fff;
+    font-size: 18px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.image{
+    height: 460px;
+    width:  380px;
+}
 /* styling project section  JOIN*/
 #join {
     min-height: 100%;
@@ -39,6 +63,7 @@ a {
     max-height: 40px;
     justify-content: center;
 }
+
 .join-content {
     height: 100%;
     display: flex;
@@ -75,7 +100,7 @@ a {
     flex-direction: column;
     padding-top: 30px;
     padding-right: 20px;
-    padding-left: 30vw;
+    padding-left: 20vw;
     color: #fff;
     text-align: left;
     font-size: 18px;

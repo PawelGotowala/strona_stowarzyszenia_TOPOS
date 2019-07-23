@@ -5,26 +5,23 @@
     }
 }
 
-@media only screen and (max-width: 1000px){
-    /* #menu > li {
-        display: block;
-        line-height: 30px;
-    } */
+@media only screen and (max-width: 1000px) {
 
-    .home-content{
+    .home-content {
         width: 60%;
     }
 
-    #join{
+    #join {
         height: auto;
     }
 
-    .join-content{
+    .join-content {
 
         height: auto;
         font-size: 12px;
     }
-    .join-content3{
+
+    .join-content3 {
         float: none;
         height: auto;
         font-size: 12px;
@@ -32,30 +29,29 @@
         padding-right: 20px;
     }
 
-    #about{
+    #about {
         height: auto;
     }
-    
-    .about-content{
+
+    .about-content {
         width: 100%;
         float: none;
         height: auto;
         font-size: 12px;
     }
-    
-    .about-photo{
+
+    .about-photo {
         width: 100%;
         float: none;
         height: 70vw;
     }
 
-    #contact{
+
+    #contact {
         height: auto;
         width: 100%;
         padding-bottom: 50px;
     }
-
-
 
 }
 
@@ -79,6 +75,7 @@
     header {
         background-color: rgba(52, 89, 149, .7);
     }
+
     nav {
         display: none;
     }
@@ -127,6 +124,11 @@
     .footer-form {
         width: 25%;
     }
+
+    .image {
+        height: 440px;
+        width: 320px;
+    }
 }
 
 @media only screen and (max-width: 720px) {
@@ -137,7 +139,27 @@
 
 /*responsive for members*/
 @media only screen and (max-width: 830px) {
-    .people-content{
+    .people-content {
         padding-top: 70px;
+    }
+}
+
+@media only screen and (max-width: 998px) {
+    .image {
+        height: 330px;
+        width: 220px;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .image {
+            height: 190px;
+            width: 120px;
+        }
+    }
+    @media only screen and (max-width: 450px) {
+        .image {
+            height: 180px ;
+            width: 100px;
+        }
     }
 }

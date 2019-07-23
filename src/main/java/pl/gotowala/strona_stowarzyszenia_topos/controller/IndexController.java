@@ -23,6 +23,8 @@ public class IndexController {
     @GetMapping("/join")
     public String joinPage(){ return "association_page/join";}
 
+    @GetMapping("/gallery")
+    public String galleryPage(){return "association_page/gallery";}
 
 
 }

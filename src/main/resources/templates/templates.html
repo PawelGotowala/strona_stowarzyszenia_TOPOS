@@ -27,7 +27,7 @@
                 <li><a sec:authorize="hasRole('BadUser')" th:href="@{'/members/list/default#people'}">Członkowie</a></li>
                 <li><a sec:authorize="hasRole('User')" th:href="@{'/members/list/search#people'}">Członkowie</a></li>
                 <li><a th:href="@{/memories/list}" >Wspomnienia</a></li>
-                <li><a href= "https://drive.google.com/open?id=1-Fc7I-DPETdavEyXSvMmWBUF7M6F24zJ" target=blank >Galeria</a></li>
+                <li><a th:href="@{'/gallery#gallery'}"  >Galeria</a></li>
                 <li><a th:href="@{'/join#join'}">Dołącz do nas!</a></li>
                 <li> <a sec:authorize="isAuthenticated()" th:href="@{/logout}"> <b>Wyloguj</b> </a></li>
             </ul>
