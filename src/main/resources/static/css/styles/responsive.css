@@ -144,6 +144,7 @@
     }
 }
 
+/*responsive for gallery*/
 @media only screen and (max-width: 998px) {
     .image {
         height: 330px;
@@ -160,6 +161,11 @@
         .image {
             height: 180px ;
             width: 100px;
+        }
+    }
+    @media only screen and (max-width: 350px){
+        .gallery-link{
+            padding-top: 40px;
         }
     }
 }

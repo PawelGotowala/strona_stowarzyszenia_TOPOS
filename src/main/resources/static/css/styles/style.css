@@ -40,12 +40,15 @@ a {
     justify-content: center;
     text-align: center;
 }
+.gallery-text {
+    color: #fff;
+    text-decoration: none;
+}
 .gallery-photo{
     height: 70vw;
     display: flex;
     flex-direction: row;
     padding: 60px 20px 20px 20px;
-    color: #fff;
     font-size: 18px;
     justify-content: center;
     box-sizing: border-box;
@@ -54,6 +57,10 @@ a {
     height: 460px;
     width:  380px;
 }
+.gallery-link{
+    padding-bottom: 60px;
+}
+
 /* styling project section  JOIN*/
 #join {
     min-height: 100%;
@@ -172,10 +179,3 @@ a {
     top: 20px;
     background-color: #FF9505;
 }
-/* styling contact section */
-
-
-
-
-/*lista pagination*/
-
