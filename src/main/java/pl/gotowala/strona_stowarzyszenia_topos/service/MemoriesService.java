@@ -16,4 +16,6 @@ public interface MemoriesService {
     int getListSize();
 
     void saveAndAddMemoriesToLoggedUser(Memory memory);
+
+    void update(Long memoryId, Memory memoryUpdate);
 }

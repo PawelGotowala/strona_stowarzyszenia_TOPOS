@@ -11,6 +11,7 @@ import pl.gotowala.strona_stowarzyszenia_topos.model.Memory;
 import pl.gotowala.strona_stowarzyszenia_topos.repository.AppUserRepository;
 import pl.gotowala.strona_stowarzyszenia_topos.repository.MemoriesRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class MemoriesServiceImpl implements MemoriesService {
     public void addMemories(Memory memory) {
         memoriesRepository.save(memory);
     }
-    private static final int PAGE_SIZE_MEMORY = 10;
+    private static final int PAGE_SIZE_MEMORY = 20;
 
     @Override
     public Page<Memory> getAllMemoriesPageable(String pageNo) {
@@ -73,5 +74,20 @@ public class MemoriesServiceImpl implements MemoriesService {
       appUserRepository.save(appUserUpdate);
     }
 
+    @Transactional
+    @Override
+    public void update(Long memoryId, Memory memoryUpdate) {
+        Optional<Memory> optionalMemory = memoriesRepository.findById(memoryId);
+        if(!optionalMemory.isPresent()){
+            throw new EntityNotFoundException("Nie ma takiego numeru id wspomeninia");
+        }
+        Memory memory = optionalMemory.get();
+        if(memoryUpdate.getOneMemory() != null){
+            memory.setOneMemory(memoryUpdate.getOneMemory());}
+        if(memoryUpdate.getSignature() != null){
+            memory.setSignature(memoryUpdate.getSignature());}
+
+        memoriesRepository.save(memory);
+    }
 
 }

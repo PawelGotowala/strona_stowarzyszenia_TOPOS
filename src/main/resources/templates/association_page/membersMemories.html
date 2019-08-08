@@ -38,6 +38,7 @@
     </ul>
 
     <div class="memories" th:each="memory : ${membersMemories}">
+        <p align="right" sec:authorize="hasRole('ADMIN')"  th:text="'nr id wspomnienia '+${memory.getId()}"></p>
         <p th:text="${memory.getOneMemory()}"> </p>
         <p align="right"  th:text="${memory.getSignature()}"> <br><br><br> </p>
     </div>
