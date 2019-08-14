@@ -17,5 +17,5 @@ public interface MemoriesService {
 
     void saveAndAddMemoriesToLoggedUser(Memory memory);
 
-    void update(Long memoryId, Memory memoryUpdate);
+    void update(Long memoryId, String oneMemoryUpdate, String signatureUpdate);
 }

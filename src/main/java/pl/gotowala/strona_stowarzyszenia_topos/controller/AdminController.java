@@ -102,16 +102,17 @@ public class AdminController {
     }
 
     @GetMapping("/memory/update")
-    public String updateMemoryForm(Model model) {
-        model.addAttribute("memoryUpdate", new Memory());
+    public String updateMemoryForm() {
         return "admin_page/updateMemory";
     }
 
     @PostMapping("/memory/update")
     public String updateMemory(@RequestParam(name = "idM") Long memoryId,
-                               Memory memoryUpdate) {
-        memoriesService.update(memoryId, memoryUpdate);
-        return "admin_page/updateMemory";
+                               @RequestParam(name= "oneMemory") String oneMemoryUpdate,
+                               @RequestParam(name= "signature") String signatureUpdate){
+        memoriesService.update(memoryId,oneMemoryUpdate,signatureUpdate);
+        System.out.println("cos jest nie tak ale tutaj dochdoze");
+        return "redirect:/admin";
     }
 
     @GetMapping("/memory/delete")

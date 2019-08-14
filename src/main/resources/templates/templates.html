@@ -66,6 +66,7 @@
             <a class="p-2 text-dark" sec:authorize="hasRole('ADMIN')" th:href="@{/admin/member/update}">Aktualizuj
                 członka</a>
             <a class="p-2 text-dark" sec:authorize="hasRole('ADMIN')" th:href="@{/admin/member/update/role}">Aktualizuj uprawnienia</a>
+            <a class="p-2 text-dark" sec:authorize="hasRole('ADMIN')" th:href="@{/admin/memory/delete}">Usuń wspomnienie</a>
         </nav>
         <a class="btn btn-outline-primary" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
         <a class="btn btn-outline-primary" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>

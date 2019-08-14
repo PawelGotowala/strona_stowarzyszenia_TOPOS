@@ -8,7 +8,7 @@
 <body>
 <th:block th:include="templates :: navigator_bar"></th:block>
 <div class="container main-window ">
-    <form th:action="@{admin/memory/update}" th:object="${memoryUpdate}" th:method="post">
+    <form th:action="@{admin/memory/update}"  th:method="post">
     <div class="row colored-row">
         <div class="col-12">
             <h2>Aktualizacja wspomnienia -- wypełnić tylko pola do zmiany</h2>
@@ -29,7 +29,7 @@
             <label for="textarea-oneMemory">Nowa treść wspomnienia:</label>
         </div>
         <div class="col-10">
-            <textarea class="form-control" id="textarea-oneMemory" th:field="*{oneMemory}" name="oneMemory"></textarea>
+            <textarea class="form-control" id="textarea-oneMemory"  name="oneMemory"></textarea>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                 <label for="signature">Nowy podpis:</label>
             </div>
             <div class="col-10">
-                <input class="form-control" id="signature" th:field="*{signature}" name="signature">
+                <input class="form-control" id="signature"  name="signature">
             </div>
         </div>
 

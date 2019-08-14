@@ -76,16 +76,16 @@ public class MemoriesServiceImpl implements MemoriesService {
 
     @Transactional
     @Override
-    public void update(Long memoryId, Memory memoryUpdate) {
+    public void update(Long memoryId, String oneMemoryUpdate, String signatureUpdate) {
         Optional<Memory> optionalMemory = memoriesRepository.findById(memoryId);
         if(!optionalMemory.isPresent()){
             throw new EntityNotFoundException("Nie ma takiego numeru id wspomeninia");
         }
         Memory memory = optionalMemory.get();
-        if(memoryUpdate.getOneMemory() != null){
-            memory.setOneMemory(memoryUpdate.getOneMemory());}
-        if(memoryUpdate.getSignature() != null){
-            memory.setSignature(memoryUpdate.getSignature());}
+        if(!oneMemoryUpdate.isEmpty()){
+            memory.setOneMemory(oneMemoryUpdate);}
+        if(!signatureUpdate.isEmpty()){
+            memory.setSignature(signatureUpdate);}
 
         memoriesRepository.save(memory);
     }
