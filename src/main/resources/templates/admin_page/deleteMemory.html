@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+   <th:block th:include="templates :: headers"></th:block>
+    <title>Usuwanie wspomnienia</title>
+</head>
+<body>
+<th:block th:include="templates :: navigator_bar"></th:block>
+<div class="container main-window ">
+    <form th:action="@{/admin/memory/delete}"  th:method="post">
+    <div class="row colored-row">
+        <div class="col-12">
+            <h2>Usuwanie wspomnienia</h2>
+        </div>
+    </div>
+
+    <div class="row colored-row">
+        <div class="col-6">
+            <label for="input-id">Numer id wspomnienia:</label>
+        </div>
+        <div class="col-6">
+              <input class ="form-control" id="input-id" name="idNumber" required>
+        </div>
+    </div>
+
+        <div class="row colored-row">
+            <div class="offset-2 col-8">
+                <input class="form-control" type="submit" value="Usuń">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<th:block th:include="templates :: footer_scripts"></th:block>
+</body>
+</html>

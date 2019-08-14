@@ -114,4 +114,15 @@ public class AdminController {
         return "admin_page/updateMemory";
     }
 
+    @GetMapping("/memory/delete")
+    public String deleteMemoryForm() {
+        return "admin_page/deleteMemory";
+    }
+
+    @PostMapping("/memory/delete")
+    public String deleteMemory(@RequestParam(name = "idNumber") Long memoryId) {
+        memoriesService.removeById(memoryId);
+        return "redirect:/admin";
+    }
+
 }
