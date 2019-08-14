@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
     private UserRoleRepository userRoleRepository;
 
     @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository, GetMembersOutExcel getMembersOutExcel, AppUserRepository appUserRepository, UserService userService,UserRoleRepository userRoleRepository) {
+    public MemberServiceImpl(MemberRepository memberRepository, GetMembersOutExcel getMembersOutExcel, AppUserRepository appUserRepository, UserService userService, UserRoleRepository userRoleRepository) {
         this.memberRepository = memberRepository;
         this.getMembersOutExcel = getMembersOutExcel;
         this.appUserRepository = appUserRepository;
@@ -51,7 +51,7 @@ public class MemberServiceImpl implements MemberService {
     public Page<Member> getAllMembersPageable(String pageNo) {
         int goToPageNo = Integer.parseInt(pageNo);
 
-        return memberRepository.findAll(PageRequest.of(goToPageNo,PAGE_SIZE));
+        return memberRepository.findAll(PageRequest.of(goToPageNo, PAGE_SIZE));
     }
 
     @Override
@@ -59,48 +59,48 @@ public class MemberServiceImpl implements MemberService {
         List<Integer> pageNumbersList = new ArrayList<>();
         int lastPageNo;
 
-        if(listCount%PAGE_SIZE != 0){
-            lastPageNo = (listCount / PAGE_SIZE) +1;
-        }else lastPageNo = (listCount / PAGE_SIZE);
+        if (listCount % PAGE_SIZE != 0) {
+            lastPageNo = (listCount / PAGE_SIZE) + 1;
+        } else lastPageNo = (listCount / PAGE_SIZE);
 
-        for(int i = 1; i <= lastPageNo ; i++ ){
+        for (int i = 1; i <= lastPageNo; i++) {
             pageNumbersList.add(i);
         }
 
         return pageNumbersList;
     }
 
-//
+    //
     @Override
-    public int getListSize(){
-        return  (int) memberRepository.count();
+    public int getListSize() {
+        return (int) memberRepository.count();
     }
 
     @Override
     public Page<Member> find(MemberSpecification memberSpecification, String pageNo) {
         int goToPageNo = Integer.parseInt(pageNo);
 
-        return memberRepository.findAll(memberSpecification,PageRequest.of(goToPageNo,PAGE_SIZE));
+        return memberRepository.findAll(memberSpecification, PageRequest.of(goToPageNo, PAGE_SIZE));
     }
 
     //create
     @Transactional
     @Override
-    public void addMembersListFromExcel(String sciezka)  {
+    public void addMembersListFromExcel(String sciezka) {
         List<Member> memberList = null;
         try {
             memberList = getMembersOutExcel.creatListOfMemberFromExcelFile(sciezka);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(!(memberList == null)) {
+        if (!(memberList == null)) {
             appUserRepository.deleteAppUserByIdAfter(4L);
             memberRepository.deleteAll();
 
             for (Member member : memberList) {
-               String userName = String.valueOf(member.getAlbumNumber());
-               String password = String.valueOf(member.getBirthDate());
-                userService.registerUser(userName,password,password);
+                String userName = String.valueOf(member.getAlbumNumber());
+                String password = String.valueOf(member.getBirthDate());
+                userService.registerUser(userName, password, password);
             }
             memberRepository.saveAll(memberList);
         }
@@ -111,10 +111,11 @@ public class MemberServiceImpl implements MemberService {
     public void addMember(Member member) {
         String userName = String.valueOf(member.getAlbumNumber());
         String password = String.valueOf(member.getBirthDate());
-        userService.registerUser(userName,password,password);
+        userService.registerUser(userName, password, password);
         memberRepository.save(member);
     }
-//delete
+
+    //delete
     @Transactional
     @Override
     public void removeMemberByAlbumNumber(int albumNumber) {
@@ -126,14 +127,14 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void updateRole() {
         List<Member> memberList = memberRepository.findAll();
-        for (Member member: memberList) {
+        for (Member member : memberList) {
 
-            if(member.getFee().equals("0")){
-               AppUser appUser = appUserRepository.getByEmail(String.valueOf(member.getAlbumNumber()));
+            if (member.getFee().equals("0")) {
+                AppUser appUser = appUserRepository.getByEmail(String.valueOf(member.getAlbumNumber()));
                 appUser.getRoles().clear();
                 appUser.getRoles().add(userRoleRepository.findByName("BadUser"));
                 appUserRepository.save(appUser);
-            }else {
+            } else {
                 AppUser appUser = appUserRepository.getByEmail(String.valueOf(member.getAlbumNumber()));
                 appUser.getRoles().clear();
                 appUser.getRoles().add(userRoleRepository.findByName("User"));
@@ -146,29 +147,38 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void update(int albumNumber, Member memberUpdate) {
         Optional<Member> optionalMember = memberRepository.findMemberByAlbumNumber(albumNumber);
-        if(!optionalMember.isPresent()){
+        if (!optionalMember.isPresent()) {
             throw new EntityNotFoundException("Nie ma takiego numeru albumu");
         }
 
         Member member = optionalMember.get();
-        if(!memberUpdate.getActualAddress().isEmpty()){
-        member.setActualAddress(memberUpdate.getActualAddress());}
-       if(memberUpdate.getBirthDate() != null){
-        member.setBirthDate(memberUpdate.getBirthDate());}
-        if(!memberUpdate.getBirthPlace().isEmpty()){
-        member.setBirthPlace(memberUpdate.getBirthPlace());}
-        if(!memberUpdate.getFamilyAddressDuringBirth().isEmpty()){
-        member.setFamilyAddressDuringBirth(memberUpdate.getFamilyAddressDuringBirth());}
-        if(!memberUpdate.getFamilyName().isEmpty()){
-        member.setFamilyName(memberUpdate.getFamilyName());}
-        if(!memberUpdate.getFirstName().isEmpty()){
-        member.setFirstName(memberUpdate.getFirstName());}
-        if(!memberUpdate.getSecondName().isEmpty()){
-        member.setSecondName(memberUpdate.getSecondName());}
-        if(!memberUpdate.getLastName().isEmpty()){
-        member.setLastName(memberUpdate.getLastName());}
-        if(!memberUpdate.getFee().isEmpty()){
-            member.setFee(memberUpdate.getFee());}
+        if (!memberUpdate.getActualAddress().isEmpty()) {
+            member.setActualAddress(memberUpdate.getActualAddress());
+        }
+        if (memberUpdate.getBirthDate() != null) {
+            member.setBirthDate(memberUpdate.getBirthDate());
+        }
+        if (!memberUpdate.getBirthPlace().isEmpty()) {
+            member.setBirthPlace(memberUpdate.getBirthPlace());
+        }
+        if (!memberUpdate.getFamilyAddressDuringBirth().isEmpty()) {
+            member.setFamilyAddressDuringBirth(memberUpdate.getFamilyAddressDuringBirth());
+        }
+        if (!memberUpdate.getFamilyName().isEmpty()) {
+            member.setFamilyName(memberUpdate.getFamilyName());
+        }
+        if (!memberUpdate.getFirstName().isEmpty()) {
+            member.setFirstName(memberUpdate.getFirstName());
+        }
+        if (!memberUpdate.getSecondName().isEmpty()) {
+            member.setSecondName(memberUpdate.getSecondName());
+        }
+        if (!memberUpdate.getLastName().isEmpty()) {
+            member.setLastName(memberUpdate.getLastName());
+        }
+        if (!memberUpdate.getFee().isEmpty()) {
+            member.setFee(memberUpdate.getFee());
+        }
 
 
         memberRepository.save(member);

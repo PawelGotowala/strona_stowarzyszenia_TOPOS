@@ -108,9 +108,9 @@ public class AdminController {
 
     @PostMapping("/memory/update")
     public String updateMemory(@RequestParam(name = "idM") Long memoryId,
-                               @RequestParam(name= "oneMemory") String oneMemoryUpdate,
-                               @RequestParam(name= "signature") String signatureUpdate){
-        memoriesService.update(memoryId,oneMemoryUpdate,signatureUpdate);
+                               @RequestParam(name = "oneMemory") String oneMemoryUpdate,
+                               @RequestParam(name = "signature") String signatureUpdate) {
+        memoriesService.update(memoryId, oneMemoryUpdate, signatureUpdate);
         System.out.println("cos jest nie tak ale tutaj dochdoze");
         return "redirect:/admin";
     }
