@@ -101,6 +101,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+/*
     @GetMapping("/memory/update")
     public String updateMemoryForm() {
         return "admin_page/updateMemory";
@@ -114,6 +115,7 @@ public class AdminController {
         System.out.println("cos jest nie tak ale tutaj dochdoze");
         return "redirect:/admin";
     }
+*/
 
     @GetMapping("/memory/delete")
     public String deleteMemoryForm() {
