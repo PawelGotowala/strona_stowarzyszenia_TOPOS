@@ -17,14 +17,7 @@
 </head>
 <body>
 <th:block th:include="templates :: navigator_bar_krzys"></th:block>
-<!--
 
-<section id="home">
-    <div class="home-content">
-        <h1>Stowarzyszenie <br/>URODZONYCH<br/> w Sopocie TOPOS</h1>
-    </div>
-</section>
--->
 
 <section id="people">
     <div class="people-content">
@@ -47,14 +40,14 @@
             </thead>
             <tr>
                 <td>
-                    <input type="text" name="searchName" >
+                    <input  type="text" name="searchName">
                 </td>
                 <td><input type="text" name="searchSecondName"></td>
                 <td><input type="text" name="searchLastName"></td>
                 <td><input type="text" name="searchFamilyName"></td>
                 <td>
                     <select name="searchBirthDate">
-                        <option name="searchBirthDate" value="opcja" >Pełny zakres</option>
+                        <option name="searchBirthDate" value="opcja">Pełny zakres</option>
                         <option name="searchBirthDate" value="opcja1">... - 1945</option>
                         <option name="searchBirthDate" value="opcja2">1946 - 1960</option>
                         <option name="searchBirthDate" value="opcja3">1961 - ...</option>
@@ -72,7 +65,7 @@
         <div><p> Liczba wyników wyszukiwania: &nbsp</p></div>
         <div th:text="${listSize}"></div>
     </div>
-  <ul class="menu">
+    <ul class="menu">
         <li th:each="integer : ${pageNumberList}">
             <a th:object="${searchParam}" th:href="@{'/members/list/search?pageNo='+ ${integer - 1} +
                           '&searchName=' + ${searchParam.firstName} +

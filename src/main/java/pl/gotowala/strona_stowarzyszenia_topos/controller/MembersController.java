@@ -23,24 +23,24 @@ public class MembersController {
     }
 
     @GetMapping("/list/default")
-    public String membersPage(@RequestParam( value ="pageNo", required = false, defaultValue = "0")String pageNo,
-                              Model model){
+    public String membersPage(@RequestParam(value = "pageNo", required = false, defaultValue = "0") String pageNo,
+                              Model model) {
 
-        model.addAttribute("memberList1" , memberService.getAllMembersPageable(pageNo));
+        model.addAttribute("memberList1", memberService.getAllMembersPageable(pageNo));
         model.addAttribute("pageNumberList", memberService.getPageNumberList(memberService.getListSize()));
         return "association_page/members";
     }
 
     @GetMapping("/list/search")
-    public String getSearchMemberList(@RequestParam( value ="pageNo", required = false, defaultValue = "0")String pageNo,
+    public String getSearchMemberList(@RequestParam(value = "pageNo", required = false, defaultValue = "0") String pageNo,
                                       Model model,
-                                      @RequestParam(name="searchName",required = false,defaultValue ="")String searchName,
-                                      @RequestParam(name="searchSecondName",required = false,defaultValue ="")String searchSecondName,
-                                      @RequestParam(name="searchLastName",required = false,defaultValue ="")String searchLastName,
-                                      @RequestParam(name="searchFamilyName",required = false,defaultValue ="")String searchFamilyName,
-                                      @RequestParam(name="searchBirthDate",required = false, defaultValue ="opcja")String searchBirthDate,
-                                      @RequestParam(name="searchBirthPlace",required = false,defaultValue ="")String searchBirthPlace,
-                                      @RequestParam(name="searchFamilyAddress",required = false, defaultValue ="")String searchFamilyAddress){
+                                      @RequestParam(name = "searchName", required = false, defaultValue = "") String searchName,
+                                      @RequestParam(name = "searchSecondName", required = false, defaultValue = "") String searchSecondName,
+                                      @RequestParam(name = "searchLastName", required = false, defaultValue = "") String searchLastName,
+                                      @RequestParam(name = "searchFamilyName", required = false, defaultValue = "") String searchFamilyName,
+                                      @RequestParam(name = "searchBirthDate", required = false, defaultValue = "opcja") String searchBirthDate,
+                                      @RequestParam(name = "searchBirthPlace", required = false, defaultValue = "") String searchBirthPlace,
+                                      @RequestParam(name = "searchFamilyAddress", required = false, defaultValue = "") String searchFamilyAddress) {
 
         SearchParams searchParams = new SearchParams();
         searchParams.setFirstName(searchName);
@@ -51,15 +51,14 @@ public class MembersController {
         searchParams.setBirthPlace(searchBirthPlace);
         searchParams.setFamilyAddress(searchFamilyAddress);
         MemberSpecification memberSpecification = new MemberSpecification(searchParams);
-       int listSize =(int) memberService.find(memberSpecification,pageNo).getTotalElements();
+        int listSize = (int) memberService.find(memberSpecification, pageNo).getTotalElements();
 
         model.addAttribute("listSize", listSize);
         model.addAttribute("pageNumberList", memberService.getPageNumberList(listSize));
         model.addAttribute("searchParam", searchParams);
-        model.addAttribute("memberList",memberService.find(memberSpecification,pageNo));
-        return "association_page/listMembers" ;
+        model.addAttribute("memberList", memberService.find(memberSpecification, pageNo));
+        return "association_page/listMembers";
     }
-
 
 
 }
