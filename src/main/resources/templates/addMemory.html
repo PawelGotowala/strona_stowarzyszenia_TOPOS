@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-   <th:block th:include="templates :: headers"></th:block>
+    <th:block th:include="templates :: headers"></th:block>
     <title>Dodawanie wspomnienia</title>
 </head>
 <body>
 <th:block th:include="templates :: navigator_bar"></th:block>
 <div class="container main-window ">
     <form th:action="@{/memories/add}" th:object="${Memory}" th:method="post">
-    <div class="row colored-row">
-        <div class="col-12">
-            <h2>Dodawanie wspomnienia</h2>
+        <div class="row colored-row">
+            <div class="col-12">
+                <h2>Dodawanie wspomnienia</h2>
+            </div>
         </div>
-    </div>
-
-    <div class="row colored-row">
-        <div class="col-2">
-            <label for="textarea-oneMemory">Treść wspomnienia:</label>
-        </div>
-        <div class="col-10">
-            <textarea class="form-control" id="textarea-oneMemory" th:field="*{oneMemory}" name="oneMemory" required></textarea>
-        </div>
-    </div>
 
         <div class="row colored-row">
             <div class="col-2">
-                <label for="signature">Imię i nazwisko autora</label>
+                <label for="textarea-oneMemory">Treść wspomnienia:</label>
+            </div>
+            <div class="col-10">
+                <textarea class="form-control" id="textarea-oneMemory" th:field="*{oneMemory}" name="oneMemory"
+                          required></textarea>
+            </div>
+        </div>
+
+        <div class="row colored-row">
+            <div class="col-2">
+                <label for="signature">Imię i nazwisko autora:</label>
             </div>
             <div class="col-10">
                 <input class="form-control" id="signature" th:field="*{signature}" name="signature" required>
