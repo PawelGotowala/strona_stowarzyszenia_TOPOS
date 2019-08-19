@@ -35,7 +35,7 @@ public class MembersController {
     public String getSearchMemberList(@RequestParam(value = "pageNo", required = false, defaultValue = "0") String pageNo,
                                       Model model,
                                       @RequestParam(name = "searchName", required = false, defaultValue = "") String searchName,
-                                    //  @RequestParam(name = "searchSecondName", required = false, defaultValue = "") String searchSecondName,
+                                      @RequestParam(name = "searchSecondName", required = false, defaultValue = "") String searchSecondName,
                                       @RequestParam(name = "searchLastName", required = false, defaultValue = "") String searchLastName,
                                       @RequestParam(name = "searchFamilyName", required = false, defaultValue = "") String searchFamilyName,
                                       @RequestParam(name = "searchBirthDate", required = false, defaultValue = "opcja") String searchBirthDate,
@@ -44,7 +44,7 @@ public class MembersController {
 
         SearchParams searchParams = new SearchParams();
         searchParams.setFirstName(searchName);
-        searchParams.setSecondName("");
+        searchParams.setSecondName(searchSecondName);
         searchParams.setLastName(searchLastName);
         searchParams.setFamilyName(searchFamilyName);
         searchParams.setBirthDate(searchBirthDate);
