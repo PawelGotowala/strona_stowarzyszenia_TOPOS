@@ -20,28 +20,26 @@
     <div class="people-content">
         <h2>Wspomnienia</h2>
     </div>
-    <a sec:authorize="!isAuthenticated()" > Możliwość dodawania wspomnień dla zalogowanych członków</a>
+    <a sec:authorize="!isAuthenticated()"> Możliwość dodawania wspomnień dla zalogowanych członków</a>
     <ul class="menu">
         <li><a sec:authorize="hasRole('User')" th:href="@{/memories/add}"> <b>Dodaj wspomnienie</b> </a></li>
     </ul>
-    <a sec:authorize="hasRole('BadUser')" > Jesteś zalogowany, jednak aby dodać wspomnienie opłać zaległą składkę :)</a>
+    <a sec:authorize="hasRole('BadUser')"> Jesteś zalogowany, jednak aby dodać wspomnienie opłać zaległą składkę :)</a>
     <ul class="menu">
         <li><a sec:authorize="!isAuthenticated()" th:href="@{/memories/add}"> <b>Zaloguj</b> </a></li>
     </ul>
 
 
-
     <ul class="menu">
         <li th:each="integer : ${pageNumberList}">
-           <a th:href="@{'/memories/list?pageNo='+${integer - 1}}" th:text="${integer}"> </a>
+            <a th:href="@{'/memories/list?pageNo='+${integer - 1}}" th:text="${integer}"> </a>
         </li>
     </ul>
 
     <div class="memories" th:each="memory : ${membersMemories}">
-        <p align="right" sec:authorize="hasRole('ADMIN')"  th:text="'nr id wspomnienia '+${memory.getId()}"></p>
-        <p
-                th:text="${memory.getOneMemory()}"> </p>
-        <p align="right"  th:text="${memory.getSignature()}"> <br><br><br> </p>
+        <p  align="right" sec:authorize="hasRole('ADMIN')" th:text="'nr id wspomnienia '+${memory.getId()}"></p>
+        <div th:text="${memory.getOneMemory()}"></div>
+        <p align="right" th:text="${memory.getSignature()}"><br><br><br></p>
     </div>
 
 
