@@ -3,6 +3,7 @@ package pl.gotowala.strona_stowarzyszenia_topos.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,7 @@ public class MemoriesServiceImpl implements MemoriesService {
     @Override
     public Page<Memory> getAllMemoriesPageable(String pageNo) {
         int goToPageNo = Integer.parseInt(pageNo);
-        return memoriesRepository.findAll(PageRequest.of(goToPageNo,PAGE_SIZE_MEMORY));
+        return memoriesRepository.findAll(PageRequest.of(goToPageNo,PAGE_SIZE_MEMORY, Sort.by("id")));
     }
 
     @Override
