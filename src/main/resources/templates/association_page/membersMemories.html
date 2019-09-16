@@ -38,7 +38,7 @@
 
     <div class="memories" th:each="memory : ${membersMemories}">
         <p  align="right" sec:authorize="hasRole('ADMIN')" th:text="'nr id wspomnienia '+${memory.getId()}"></p>
-        <div th:text="${memory.getOneMemory()}"></div>
+        <div th:utext="${#strings.replace(memory.getOneMemory(),T(System).getProperty('line.separator'),'&lt;br /&gt;')}"></div>
         <p align="right" th:text="${memory.getSignature()}"><br><br><br></p>
     </div>
 
